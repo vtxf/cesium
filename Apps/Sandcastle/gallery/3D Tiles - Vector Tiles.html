@@ -48,7 +48,12 @@ viewer.terrainProvider = cesiumTerrainProviderMeshes;
 viewer.scene.globe.depthTestAgainstTerrain = true;
 
 var tileset = scene.primitives.add(new Cesium.Cesium3DTileset({
-    url : 'http://localhost:8002/tilesets/VectorTile-Test/',
+    url : 'http://localhost:8002/tilesets/corridors/',
+    debugShowStatistics : true
+}));
+
+scene.primitives.add(new Cesium.Cesium3DTileset({
+    url : 'http://localhost:8003/localTilesets/philadelphia/PhiladelphiaHiResRealityModel.json',
     debugShowStatistics : true
 }));
 
@@ -61,7 +66,7 @@ tileset.readyPromise.then(function(tileset) {
         "color" : {
             "conditions" : [
                 ["${BEZ} == 23", "color('red')"],
-                ["true", "color('blue')"]
+                ["true", "color('cyan', 0.5)"]
             ]
         }
     });

@@ -1521,7 +1521,7 @@ define([
         var isTerrain = command.pass === Pass.GLOBE;
 
         var hasTerrainNormal = false;
-        if (isTerrain) {
+        if (isTerrain && defined(command.owner.data)) {
             hasTerrainNormal = command.owner.data.pickTerrain.mesh.encoding.hasVertexNormals;
         }
 

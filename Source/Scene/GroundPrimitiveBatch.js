@@ -171,7 +171,7 @@ define([
         var batchTable = primitive._batchTable;
 
         var minHeight = primitive._minimumHeight;
-        var maxHeight = primitive._maximumHeight;
+        var maxHeight = 8500.0;//primitive._maximumHeight;
 
         var quantizedOffset = primitive._quantizedOffset;
         var quantizedScale = primitive._quantizedScale;

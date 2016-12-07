@@ -925,6 +925,10 @@ define([
     function deriveCommand(command) {
         var derivedCommand = DrawCommand.shallowClone(command);
 
+	if (derivedCommand.pass === Pass.OPAQUE) {
+	    derivedCommand.pass = Pass.GLOBE;
+	}
+
         // Add a uniform to indicate if the original command was translucent so
         // the shader knows not to cull vertices that were originally transparent
         // even though their style is opaque.
