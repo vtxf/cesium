@@ -98,13 +98,45 @@ handler.setInputAction(function(movement) {
         }
     }
 }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
-		    
+
+var groundPrimitives = new Array(30);
+for (var i = 0; i < groundPrimitives.length; ++i) {
+    var color = Cesium.Color.fromRandom();
+    color.alpha = 0.5;
+    groundPrimitives[i] = scene.groundPrimitives.add(new Cesium.GroundPrimitive({
+        geometryInstances : new Cesium.GeometryInstance({
+            geometry : new Cesium.PolygonGeometry({
+                polygonHierarchy : {
+		    positions : [Cesium.Cartesian3.fromDegrees(-75.167709, 39.952851),
+		        Cesium.Cartesian3.fromDegrees(-75.167845, 39.952280),
+		        Cesium.Cartesian3.fromDegrees(-75.168563, 39.952352),
+		        Cesium.Cartesian3.fromDegrees(-75.168457, 39.952853)]
+                }
+	    }),
+	    attributes: {
+	        color: Cesium.ColorGeometryInstanceAttribute.fromColor(color)
+	    },
+	    id : 'level ' + i
+        }),
+        _minHeight : i * 10.0,
+        _maxHeight : i * 10.0 + 10.0,
+        asynchronous : false
+    }));
+    groundPrimitives[i].show = false;
+}
+				
 Sandcastle.addToolbarButton('Toggle Show Business Corridors', function() {
     corridorTileset.show = !corridorTileset.show;
 });
 
 Sandcastle.addToolbarButton('Toggle Show Census Data', function() {
     censusTileset.show = !censusTileset.show;
+				});
+
+Sandcastle.addToolbarButton('Toggle Show Building Levels', function() {
+    for (var i = 0; i < groundPrimitives.length; ++i) {
+        groundPrimitives[i].show = !groundPrimitives[i].show;
+    }
 });
 
 ///////////////////////////////////////////////////////////////////////////////

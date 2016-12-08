@@ -267,6 +267,9 @@ define([
             _createCommandsFunction : undefined,
             _createPickOffsets : true
         };
+
+        this._minTerrainHeight = options._minHeight
+        this._maxTerrainHeight = options._maxHeight;
     }
 
     var readOnlyInstanceAttributesScratch = ['color'];
@@ -672,8 +675,8 @@ define([
             }
         }
 
-        primitive._minTerrainHeight = Math.max(GroundPrimitive._defaultMinTerrainHeight, minTerrainHeight);
-        primitive._maxTerrainHeight = maxTerrainHeight;
+        //primitive._minTerrainHeight = Math.max(GroundPrimitive._defaultMinTerrainHeight, minTerrainHeight);
+        //primitive._maxTerrainHeight = maxTerrainHeight;
     }
 
     var scratchBoundingSphere = new BoundingSphere();
