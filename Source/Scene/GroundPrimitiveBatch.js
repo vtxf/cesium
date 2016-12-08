@@ -171,7 +171,7 @@ define([
         var batchTable = primitive._batchTable;
 
         var minHeight = primitive._minimumHeight;
-        var maxHeight = 8500.0;//primitive._maximumHeight;
+        var maxHeight = 350.0;//primitive._maximumHeight;
 
         var quantizedOffset = primitive._quantizedOffset;
         var quantizedScale = primitive._quantizedScale;
@@ -877,7 +877,7 @@ define([
         }
 
         batchedIndices.push({
-            color : color,
+            color : Color.clone(color),
             offset : offset,
             count : count,
             batchIds : [batchId]
@@ -904,7 +904,7 @@ define([
 
         if (endIds.length !== 0) {
             batchedIndices.push({
-                color : batchedIndices[i].color,
+                color : Color.clone(batchedIndices[i].color),
                 offset : offset + count,
                 count : batchedIndices[i].offset + batchedIndices[i].count - (offset + count),
                 batchIds : endIds
