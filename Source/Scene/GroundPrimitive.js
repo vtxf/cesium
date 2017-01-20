@@ -400,7 +400,7 @@ define([
      * @returns {Boolean} <code>true</code> if GroundPrimitives are supported; otherwise, returns <code>false</code>
      */
     GroundPrimitive.isSupported = function(scene) {
-        return scene.context.fragmentDepth && scene.context.stencilBuffer;
+        return /*scene.context.fragmentDepth &&*/ scene.context.stencilBuffer;
     };
 
     GroundPrimitive._defaultMaxTerrainHeight = 9000.0;
@@ -551,7 +551,7 @@ define([
 
     function getRectangle(frameState, geometry) {
         var ellipsoid = frameState.mapProjection.ellipsoid;
-        
+
         if (!defined(geometry.attributes) || !defined(geometry.attributes.position3DHigh)) {
             if (defined(geometry.rectangle)) {
                 return geometry.rectangle;
@@ -695,7 +695,7 @@ define([
 
         var result = BoundingSphere.fromRectangle3D(rectangle, ellipsoid, 0.0);
         BoundingSphere.fromRectangle3D(rectangle, ellipsoid, maxTerrainHeight, scratchBoundingSphere);
-        
+
         return BoundingSphere.union(result, scratchBoundingSphere, result);
     }
 
