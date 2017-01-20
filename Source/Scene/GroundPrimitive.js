@@ -1033,7 +1033,7 @@ define([
      */
     GroundPrimitive.prototype.update = function(frameState) {
         var context = frameState.context;
-        if (!context.fragmentDepth || !this.show || (!defined(this._primitive) && !defined(this.geometryInstances))) {
+        if (/*!context.fragmentDepth ||*/ !this.show || (!defined(this._primitive) && !defined(this.geometryInstances))) {
             return;
         }
 
