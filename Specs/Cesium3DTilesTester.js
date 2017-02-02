@@ -3,6 +3,7 @@ define([
         'Core/Color',
         'Core/defaultValue',
         'Core/defined',
+        'Core/Matrix4',
         'Scene/Cesium3DTileContentFactory',
         'Scene/Cesium3DTileContentState',
         'Scene/Cesium3DTileset',
@@ -12,6 +13,7 @@ define([
         Color,
         defaultValue,
         defined,
+        Matrix4,
         Cesium3DTileContentFactory,
         Cesium3DTileContentState,
         Cesium3DTileset,
@@ -20,6 +22,7 @@ define([
     'use strict';
 
     var mockTile = {
+        computedTransform : Matrix4.IDENTITY,
         contentBoundingVolume : new TileBoundingSphere(),
         _contentBoundingVolume : new TileBoundingSphere(),
         _header : {
