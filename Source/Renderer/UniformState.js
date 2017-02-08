@@ -151,7 +151,6 @@ define([
         this._fogDensity = undefined;
 
         this._imagerySplitPosition = 0.0;
-        this._pixelSizePerMeter = undefined;
         this._geometricToleranceOverMeter = undefined;
     }
 
