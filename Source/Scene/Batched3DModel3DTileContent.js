@@ -309,6 +309,7 @@ define([
             releaseGltfJson : true, // Models are unique and will not benefit from caching so save memory
             basePath : getBaseUri(this._url),
             modelMatrix : this._tile.computedTransform,
+            upAxis : this._tileset._gltfUpAxis,
             shadows: this._tileset.shadows,
             debugWireframe: this._tileset.debugWireframe,
             incrementallyLoadTextures : false,

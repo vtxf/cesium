@@ -24,6 +24,7 @@ define([
         '../Core/RequestType',
         '../ThirdParty/Uri',
         '../ThirdParty/when',
+        './Axis',
         './Cesium3DTile',
         './Cesium3DTileColorBlendMode',
         './Cesium3DTileRefine',
@@ -60,6 +61,7 @@ define([
         RequestType,
         Uri,
         when,
+        Axis,
         Cesium3DTile,
         Cesium3DTileColorBlendMode,
         Cesium3DTileRefine,
@@ -137,6 +139,7 @@ define([
         this._asset = undefined; // Metadata for the entire tileset
         this._properties = undefined; // Metadata for per-model/point/etc properties
         this._geometricError = undefined; // Geometric error when the tree is not rendered at all
+        this._gltfUpAxis = undefined;
         this._processingQueue = [];
         this._selectedTiles = [];
         this._selectedTilesToStyle = [];
@@ -444,9 +447,11 @@ define([
         var that = this;
         this.loadTileset(tilesetUrl).then(function(data) {
             var tilesetJson = data.tilesetJson;
+            var gltfUpAxis = defined(tilesetJson.gltfUpAxis) ? Axis.fromName(tilesetJson.gltfUpAxis) : Axis.Y;
             that._asset = tilesetJson.asset;
             that._properties = tilesetJson.properties;
             that._geometricError = tilesetJson.geometricError;
+            that._gltfUpAxis = gltfUpAxis;
             that._root = data.root;
             that._readyPromise.resolve(that);
         }).otherwise(function(error) {
