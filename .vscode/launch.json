@@ -1,0 +1,43 @@
+{
+  "version": "0.2.0",
+  "configurations": [   
+    {
+      "name": "Launch Chrome against local file, with sourcemaps",  // 直接调试相应的html文件
+      "type": "chrome",
+      "request": "launch",
+      "file": "${file}",  // 本地文件调试要用file，而不能是url!
+      // "webRoot": "${workspaceRoot}",  // 本地文件调试不需要 webroot
+      "sourceMaps": true,
+      "runtimeArgs": [
+        "--allow-file-access-from-files",
+        // "--remote-debugging-port=9222", // 本地文件调试不需要这个参数
+        "--enable-unsafe-es3-apis",
+        "--disable-web-security",
+        "--user-data-dir=${workspaceRoot}/.vscode/chrome"
+      ]
+    },
+    {
+      "name": "Launch Chrome against localhost, with sourcemaps",  // 启动本地服务再调试相应的html文件
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:8080",
+      "sourceMaps": true,
+      "webRoot": "${workspaceRoot}",
+      "runtimeArgs": [
+        // "--allow-file-access-from-files", // 好像不需要了
+        // "--remote-debugging-port=9222", // 也不需要
+        "--enable-unsafe-es3-apis",
+        "--disable-web-security", // 跨域的时候需要，不需要跨域时可以注释掉
+        "--user-data-dir=${workspaceRoot}/.vscode/chrome" // 一旦设置了--disable-web-security，就需要同时设置这个用户路径，不设置chrome浏览器会弹出提示--disable-web-security不起作用。
+      ]
+    },
+    {
+      "name": "Attach to Chrome, with sourcemaps",  // 附加到浏览器调试html文件
+      "type": "chrome",
+      "request": "attach",
+      "port": 9222, // 附加的时候才需要用到！
+      "sourceMaps": true,
+      "webRoot": "${workspaceRoot}"
+    }
+  ]
+}
