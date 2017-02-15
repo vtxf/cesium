@@ -202,7 +202,7 @@ gulp.task('generateDocumentation', function() {
     var envPathSeperator = os.platform() === 'win32' ? ';' : ':';
 
     return new Promise(function(resolve, reject) {
-        child_process.exec('jsdoc --configure Tools/jsdoc/conf.json', {
+        child_process.exec('jsdoc --configure Tools/jsdoc/conf.json -a all', {
             env : {
                 PATH : process.env.PATH + envPathSeperator + 'node_modules/.bin',
                 CESIUM_VERSION : version
